@@ -38,7 +38,7 @@ import {
 } from 'react-native';
 import Actions from './Actions';
 import _drawerImage from './menu_burger.png';
-import _backButtonImage from './back_chevron.png';
+import _backButtonImage from './backButton.png';
 
 const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#0A0A0A',
     fontSize: 18,
-    width: 180,
+    width: 200,
     alignSelf: 'center',
   },
   titleWrapper: {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     zIndex: 9999
   },
   backButton: {
-    width: 100,
+    width: 90,
     height: 37,
     position: 'absolute',
     ...Platform.select({
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   rightButton: {
-    width: 100,
+    width: 90,
     height: 37,
     position: 'absolute',
     ...Platform.select({
@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   backButtonImage: {
-    width: 13,
-    height: 21,
+    width: 8,
+    height: 12,
   },
   rightButtonIconStyle: {
 

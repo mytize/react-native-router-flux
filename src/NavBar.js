@@ -507,7 +507,7 @@ class NavBar extends React.Component {
     const contents = (
       <View>
         {renderTitle ? renderTitle(navProps) : state.children.map(this.renderTitle, this)}
-        {renderBackButton(navProps) || renderLeftButton(navProps)}
+        {renderLeftButton(navProps) || renderBackButton(navProps)}
         {renderRightButton(navProps)}
       </View>
     );

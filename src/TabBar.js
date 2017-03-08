@@ -21,15 +21,17 @@ class TabBar extends Component {
   };
 
   static onSelect(el) {
-    if (!Actions[el.props.name]) {
-      throw new Error(
-        `No action is defined for name=${el.props.name} ` +
-        `actions: ${JSON.stringify(Object.keys(Actions))}`);
-    }
-    if (typeof el.props.onPress === 'function') {
-      el.props.onPress();
-    } else {
-      Actions[el.props.name]();
+    if (!el.props.isDisabled) {
+      if (!Actions[el.props.name]) {
+        throw new Error(
+          `No action is defined for name=${el.props.name} ` +
+          `actions: ${JSON.stringify(Object.keys(Actions))}`);
+      }
+      if (typeof el.props.onPress === 'function') {
+        el.props.onPress();
+      } else {
+        Actions[el.props.name]();
+      }
     }
   }
 

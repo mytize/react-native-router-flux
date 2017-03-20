@@ -168,6 +168,29 @@ const styles = StyleSheet.create({
   centerStyle: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  rightButtonWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    position: 'relative',
+    right: 5
+  },
+  cartCount: {
+    minWidth: 15,
+    height: 15,
+    borderRadius: 7.5,
+    backgroundColor: 'rgb(0, 153, 255)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: -10,
+    right: -8,
+    overflow: 'hidden',
+  },
+  cartContainer: {
+    position: 'relative',
+    zIndex: 99999
   }
 });
 
@@ -311,28 +334,61 @@ class NavBar extends React.Component {
       }
       if (state.onRight && (rightTitle || state.rightButtonImage)) {
         const onPress = state.onRight.bind(null, state);
-        return (
-          <TouchableOpacity
-            key={'rightNavBarBtn'}
-            testID="rightNavButton"
-            style={style}
-            onPress={onPress}
-          >
-            {rightTitle &&
-              <Text style={textStyle}>
-                {rightTitle}
-              </Text>
-            }
-            {state.rightButtonImage &&
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                <Image
-                  source={state.rightButtonImage}
-                  style={state.rightButtonIconStyle}
-                />
-              </View>
-            }
-          </TouchableOpacity>
-        );
+        if (state.isCart) {
+          const price = state.price
+          const countOrders = state.countOrders
+          const priceDecimal = state.priceDecimal
+
+          return (
+            <TouchableOpacity
+              key={'rightNavBarBtn'}
+              testID="rightNavButton"
+              style={style}
+              onPress={onPress}
+            >
+              {state.rightButtonImage &&
+                <View style={styles.rightButtonWrapper}>
+                  { countOrders > 0 &&
+                    <View style={styles.cartContainer}>
+                      <Text style={state.priceStyle}>{'$' +price + '.'}<Text style={state.priceDecimalStyle}>{priceDecimal}</Text></Text>
+                      <View style={styles.cartCount}>
+                        <Text style={state.countOrdersStyle}>{countOrders.toString()}</Text>
+                      </View>
+                    </View>
+                  }
+                  <Image
+                    source={state.rightButtonImage}
+                    style={state.rightButtonIconStyle}
+                  />
+                </View>
+              }
+            </TouchableOpacity>
+          );
+
+        } else {
+          return (
+            <TouchableOpacity
+              key={'rightNavBarBtn'}
+              testID="rightNavButton"
+              style={style}
+              onPress={onPress}
+            >
+              {rightTitle &&
+                <Text style={textStyle}>
+                  {rightTitle}
+                </Text>
+              }
+              {state.rightButtonImage &&
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                  <Image
+                    source={state.rightButtonImage}
+                    style={state.rightButtonIconStyle}
+                  />
+                </View>
+              }
+            </TouchableOpacity>
+          );
+        }
       }
       if ((!!state.onRight ^ !!(typeof(rightTitle) !== 'undefined'
         || typeof(state.rightButtonImage) !== 'undefined'))) {

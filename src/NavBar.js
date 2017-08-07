@@ -350,7 +350,7 @@ class NavBar extends React.Component {
                 <View style={styles.rightButtonWrapper}>
                   { countOrders > 0 &&
                     <View style={styles.cartContainer}>
-                      <Text style={state.priceStyle}>{'$' +price + '.'}<Text style={state.priceDecimalStyle}>{priceDecimal}</Text></Text>
+                      {/* <Text style={state.priceStyle}>{'$' +price + '.'}<Text style={state.priceDecimalStyle}>{priceDecimal}</Text></Text> */}
                       <View style={styles.cartCount}>
                         <Text style={state.countOrdersStyle}>{countOrders.toString()}</Text>
                       </View>
